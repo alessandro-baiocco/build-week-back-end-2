@@ -1,7 +1,10 @@
 package application.U5D16.services;
 
+import application.U5D16.config.EmailSender;
 import application.U5D16.entities.User;
-import application.U5D16.enums.Role;
+import application.U5D16.entities.enums.Role;
+import application.U5D16.exceptions.BadRequestException;
+import application.U5D16.exceptions.UnauthorizedException;
 import application.U5D16.payloads.user.NewUserDTO;
 import application.U5D16.payloads.user.UserLoginDTO;
 import application.U5D16.repositories.UsersRepository;
@@ -25,6 +28,9 @@ public class AuthService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private EmailSender emails;
 
     public String authenticateUser(UserLoginDTO body){
         // 1. Verifichiamo che l'email dell'utente sia nel db
@@ -52,11 +58,12 @@ public class AuthService {
         newUser.setNome(body.nome());
         newUser.setCognome(body.cognome());
         newUser.setUsername(body.username());
-        newUser.setPassword(bcrypt.encode(body.password())); // $2a$11$wQyZ17wrGu8AZeb2GCTcR.QOotbcVd9JwQnnCeqONWWP3wRi60tAO
+        newUser.setPassword(bcrypt.encode(body.password()));
         newUser.setEmail(body.email());
         newUser.setRole(Role.USER);
 
         User savedUser = usersRepository.save(newUser);
+        emails.sendRegistrationEmail(body.email(), body.nome());
         return savedUser;
     }
 }

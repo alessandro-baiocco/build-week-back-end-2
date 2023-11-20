@@ -17,6 +17,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter {
@@ -41,7 +42,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
             // 3. Se è tutto OK
             // 3.1 Cerco l'utente nel database tramite id (l'id sta nel payload del token, quindi devo estrarlo da lì)
             String id = jwtTools.extractIdFromToken(token);
-            User currentUser = usersService.findById(Integer.parseInt(id));
+            User currentUser = usersService.findById(UUID.fromString(id));
 
             // 3.2 Segnalo a Spring Security che l'utente ha il permesso di procedere
             // Se non facciamo questa procedura, ci verrà comunque tornato 403
