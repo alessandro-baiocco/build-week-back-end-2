@@ -1,12 +1,7 @@
 package application.U5D16.exceptions;
 
-public class NotFoundException extends RuntimeException{
+import java.util.UUID;
 
-    public NotFoundException(int id){
-        super("Elemento con id " + id + " non trovato!");
-    }
-
-    public NotFoundException(String message) {
-        super(message);
-    }
+public class NotFoundException extends RuntimeException {
+    public NotFoundException(UUID id){super("Record whit id: " + id + " not found");}
 }
