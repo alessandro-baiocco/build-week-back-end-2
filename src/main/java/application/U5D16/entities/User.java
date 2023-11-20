@@ -1,6 +1,6 @@
 package application.U5D16.entities;
 
-import application.U5D16.enums.Role;
+import application.U5D16.entities.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
