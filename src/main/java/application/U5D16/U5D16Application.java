@@ -4,6 +4,8 @@ import application.U5D16.services.FullAddressService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.IOException;
+
 @SpringBootApplication
 public class U5D16Application {
 
@@ -11,9 +13,8 @@ public class U5D16Application {
 		SpringApplication.run(U5D16Application.class, args);
 
 
-//
-//		FullAddressService csvService = new FullAddressService();
-//		csvService.readCsvAndStoreInDb("src/main/excels/comuni-italiani.csv");
+
+
 
 
 	}

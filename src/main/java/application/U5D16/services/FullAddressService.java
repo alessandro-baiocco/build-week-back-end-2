@@ -19,12 +19,12 @@ import java.nio.file.Paths;
 public class FullAddressService {
 
     @Autowired
-    FullAddressRepository fullAddressRepo;
+    private FullAddressRepository fullAddressRepo;
 
     String line = "";
 
 
-    public void readCsvAndStoreInDb(String filePath) {
+    public void readCsvAndStoreInDb(String filePath) throws IOException {
 
 
         try (Reader reader = Files.newBufferedReader(Paths.get(filePath));
@@ -53,4 +53,9 @@ public class FullAddressService {
             e.printStackTrace();
         }
     }
+
+
+
+
+
 }
