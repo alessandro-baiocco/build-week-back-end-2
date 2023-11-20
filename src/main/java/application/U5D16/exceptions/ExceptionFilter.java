@@ -18,9 +18,11 @@ public class ExceptionFilter extends OncePerRequestFilter {
     @Qualifier("handlerExceptionResolver")
     private HandlerExceptionResolver resolver;
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         try {
+            System.out.println(resolver);
             filterChain.doFilter(request, response);
         } catch (Exception e){
             resolver.resolveException(request,response, null, e);

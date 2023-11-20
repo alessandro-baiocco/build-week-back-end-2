@@ -6,14 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.UUID;
+
 
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
-@Data
 @Setter
-@ToString
 @Entity
 @Table(name = "address")
 public class Address {
@@ -29,9 +28,9 @@ public class Address {
     @CreationTimestamp
     private Date createdAt;
 
-/*
+
     @OneToOne
     @JoinColumn(name = "client_id")
-    private Client client
-*/
+    private Client client;
+
 }
