@@ -39,4 +39,9 @@ public class Client {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Fattura> fatture = new ArrayList<>();
+
+    @OneToOne(mappedBy = "client")
+    private Address indirizzo;
+
+
 }
