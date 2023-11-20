@@ -2,6 +2,8 @@ package application.U5D16.services;
 
 import application.U5D16.entities.User;
 import application.U5D16.enums.Role;
+import application.U5D16.exceptions.BadRequestException;
+import application.U5D16.exceptions.UnauthorizedException;
 import application.U5D16.payloads.user.NewUserDTO;
 import application.U5D16.payloads.user.UserLoginDTO;
 import application.U5D16.repositories.UsersRepository;

@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UsersService {
     @Autowired
@@ -23,16 +25,16 @@ public class UsersService {
         return usersRepository.findAll(pageable);
     }
 
-    public User findById(int id) throws NotFoundException {
+    public User findById(UUID id) throws NotFoundException {
         return usersRepository.findById(id).orElseThrow( ()  -> new NotFoundException(id));
     }
 
-    public void findByIdAndDelete(int id) throws NotFoundException{
+    public void findByIdAndDelete(UUID id) throws NotFoundException{
         User found = this.findById(id);
         usersRepository.delete(found);
     }
 
-    public User findByIdAndUpdate(int id, User body) throws NotFoundException{
+    public User findByIdAndUpdate(UUID id, User body) throws NotFoundException{
         User found = this.findById(id);
         found.setUsername(body.getUsername());
         found.setNome(body.getNome());
