@@ -37,6 +37,7 @@ public class UsersService {
         found.setUsername(body.getUsername());
         found.setNome(body.getNome());
         found.setCognome(body.getCognome());
+        found.setEmail(body.getEmail());
         return usersRepository.save(found);
     }
 
