@@ -1,6 +1,7 @@
 package application.U5D16.services;
 
 import application.U5D16.entities.User;
+import application.U5D16.exceptions.NotFoundException;
 import application.U5D16.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,8 +34,9 @@ public class UsersService {
 
     public User findByIdAndUpdate(int id, User body) throws NotFoundException{
         User found = this.findById(id);
-        found.setSurname(body.getSurname());
-        found.setName(body.getName());
+        found.setUsername(body.getUsername());
+        found.setNome(body.getNome());
+        found.setCognome(body.getCognome());
         return usersRepository.save(found);
     }
 
