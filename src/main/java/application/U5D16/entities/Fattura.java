@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "faatture")
+@Table(name = "fatture")
 @Getter
 @Setter
 public class Fattura {
