@@ -4,6 +4,7 @@ import application.U5D16.entities.Address;
 import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.exceptions.NotFoundException;
 import application.U5D16.payloads.user.AddressDTO;
+import application.U5D16.payloads.user.UpdateAddressDTO;
 import application.U5D16.repositories.AddressRepository;
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,30 @@ public class AddressService {
         newLocationAddress.setCap(newAddress.cap());
         newLocationAddress.setComune(newAddress.comune());
         return addressRepository.save(newLocationAddress);
+    }
+
+    public Address findAddressByIdAndDelete(UUID uuid, UpdateAddressDTO body){
+
+        Address foundAddress = this.findById(uuid);
+
+        if (body.via() != null){
+            foundAddress.setVia(body.via());
+        }
+        if (body.località() != null){
+            foundAddress.setLocalità(body.località());
+        }
+        if (body.località() != null){
+            foundAddress.setLocalità(body.località());
+        }
+        if (body.comune() != null){
+            foundAddress.setComune(body.comune());
+        }
+
+        return addressRepository.save(foundAddress);
+    }
+
+    public void findAddressByUUIDAndDelete(UUID uuid) throws NotFoundException {
+        Address foundAddress = this.findById(uuid);
+        addressRepository.delete(foundAddress);
     }
 }
