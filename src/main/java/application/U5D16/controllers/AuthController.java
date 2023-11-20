@@ -8,6 +8,7 @@ import application.U5D16.payloads.user.UserLoginSuccessDTO;
 import application.U5D16.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public User saveUser(@RequestBody @Validated NewUserDTO body , BindingResult validation){
         if(validation.hasErrors()){

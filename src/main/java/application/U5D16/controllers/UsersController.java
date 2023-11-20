@@ -42,6 +42,7 @@ public class UsersController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public UserDetails getProfile(@PathVariable UUID id, @RequestBody User body){
         return usersService.findByIdAndUpdate(id , body);
     }
