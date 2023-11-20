@@ -1,5 +1,6 @@
 package application.U5D16.entities;
 
+import application.U5D16.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public class User implements UserDetails {
     private String nome;
     private String cognome;
     private String avatar;
+    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
