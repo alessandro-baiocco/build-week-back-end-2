@@ -1,7 +1,9 @@
 package application.U5D16.services;
 
 import application.U5D16.entities.Address;
+import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.exceptions.NotFoundException;
+import application.U5D16.payloads.user.AddressDTO;
 import application.U5D16.repositories.AddressRepository;
 import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,19 @@ public class AddressService {
         return addressRepository.findById(uuid).orElseThrow(() -> new NotFoundException(uuid));
     }
 
-    //public Address saveaddress()
+    public Address saveAddress(AddressDTO newAddress){
+
+        addressRepository.findByVia(newAddress.via()).ifPresent(position -> {throw new
+                BadRequestException("The address added already exists");
+
+        });
+
+        Address newLocationAddress = new Address();
+
+        newLocationAddress.setVia(newAddress.via());
+        newLocationAddress.setLocalità(newAddress.località());
+        newLocationAddress.setCap(newAddress.cap());
+        newLocationAddress.setComune(newAddress.comune());
+        return addressRepository.save(newLocationAddress);
+    }
 }
