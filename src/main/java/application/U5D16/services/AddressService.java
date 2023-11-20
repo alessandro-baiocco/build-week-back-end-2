@@ -1,8 +1,37 @@
 package application.U5D16.services;
 
+import application.U5D16.entities.Address;
+import application.U5D16.exceptions.NotFoundException;
+import application.U5D16.repositories.AddressRepository;
+import com.cloudinary.Cloudinary;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class AddressService {
 
+    @Autowired
+    AddressRepository addressRepository;
+
+    @Autowired
+    private Cloudinary cloudinary;
+
+    public Page<Address> getALlAddresses(int page, int size, String orderBy)
+    {
+        Pageable addressPageable = PageRequest.of(page, size, Sort.by(orderBy));
+        return addressRepository.findAll(addressPageable);
+    }
+
+    public Address findById(UUID uuid) throws NotFoundException {
+
+        return addressRepository.findById(uuid).orElseThrow(() -> new NotFoundException(uuid));
+    }
+
+    //public Address saveaddress()
 }
