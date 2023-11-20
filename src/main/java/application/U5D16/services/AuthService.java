@@ -1,7 +1,16 @@
 package application.U5D16.services;
 
+import application.U5D16.entities.User;
+import application.U5D16.enums.Role;
+import application.U5D16.payloads.user.NewUserDTO;
+import application.U5D16.payloads.user.UserLoginDTO;
+import application.U5D16.repositories.UsersRepository;
+import application.U5D16.security.JWTTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service
 public class AuthService {
@@ -40,15 +49,13 @@ public class AuthService {
 
         User newUser = new User();
 
-        newUser.setName(body.name());
-        newUser.setSurname(body.surname());
+        newUser.setNome(body.nome());
+        newUser.setCognome(body.cognome());
+        newUser.setUsername(body.username());
         newUser.setPassword(bcrypt.encode(body.password())); // $2a$11$wQyZ17wrGu8AZeb2GCTcR.QOotbcVd9JwQnnCeqONWWP3wRi60tAO
         newUser.setEmail(body.email());
-        if(body.isAnOrganizer()){
-            newUser.setRole(Role.EVENT_ORGANIZER);
-        }else{
-            newUser.setRole(Role.USER);
-        }
+        newUser.setRole(Role.USER);
+
         User savedUser = usersRepository.save(newUser);
         return savedUser;
     }
