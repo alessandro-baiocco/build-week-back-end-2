@@ -1,6 +1,7 @@
 package application.U5D16.security;
 
 
+import application.U5D16.exceptions.ExceptionFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +36,7 @@ public class SecurityConfig {
     JWTAuthFilter jwtAuthFilter;
 
     @Autowired
-    ExceptionsHandlerFilter exceptionsHandlerFilter;
+    ExceptionFilter exceptionFilter;
 
     @Value("#{'${cors.allowed-origins}'.split(',')}")
     private List<String> allowedOrigins;
@@ -50,7 +51,7 @@ public class SecurityConfig {
 
         // Aggiugo filtri custom
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-        http.addFilterBefore(exceptionsHandlerFilter, JWTAuthFilter.class);
+        http.addFilterBefore(exceptionFilter, JWTAuthFilter.class);
 
         // Aggiungo/rimuovo protezione sui singoli endpoint in maniera che venga/non venga richiesta l'autenticazione per accedervi
         http.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());

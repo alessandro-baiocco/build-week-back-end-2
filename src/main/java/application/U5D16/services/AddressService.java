@@ -52,7 +52,7 @@ public class AddressService {
         return addressRepository.save(newLocationAddress);
     }
 
-    public Address findAddressByIdAndDelete(UUID uuid, UpdateAddressDTO body){
+    public Address findAddressByIdAndUpdate(UUID uuid, UpdateAddressDTO body){
 
         Address foundAddress = this.findById(uuid);
 

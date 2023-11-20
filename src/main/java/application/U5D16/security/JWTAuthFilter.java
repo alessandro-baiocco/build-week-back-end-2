@@ -1,6 +1,7 @@
 package application.U5D16.security;
 
 import application.U5D16.entities.User;
+import application.U5D16.exceptions.UnauthorizedException;
 import application.U5D16.services.UsersService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
