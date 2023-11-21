@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class FattureService {
+public class FatturaService {
 
 
     @Autowired
@@ -35,10 +35,6 @@ public class FattureService {
     }
 
     public Fattura saveFattura(FatturaDTO newFattura){
-
-        fatturaRepository.findByClient(newFattura.client()).ifPresent(fatturaEsistente -> {throw new
-                BadRequestException("The fattura already exists");
-        });
 
         Fattura addNewFattura = new Fattura();
 
