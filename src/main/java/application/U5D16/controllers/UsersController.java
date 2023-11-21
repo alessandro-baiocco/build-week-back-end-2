@@ -1,6 +1,7 @@
 package application.U5D16.controllers;
 
 import application.U5D16.entities.User;
+import application.U5D16.payloads.user.EmailDTO;
 import application.U5D16.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,7 +60,11 @@ public class UsersController {
     }
 
 
-
+    @PostMapping("/sendEmail")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public void sendEmail(@RequestBody EmailDTO body) throws IOException{
+         usersService.sendEmail(body);
+    }
 
 
 }
