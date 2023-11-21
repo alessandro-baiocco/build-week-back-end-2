@@ -2,18 +2,16 @@ package application.U5D16.controllers;
 
 
 import application.U5D16.entities.Client;
-import application.U5D16.entities.User;
-import application.U5D16.payloads.user.NewClientDTO;
+import application.U5D16.payloads.client.NewClientDTO;
 import application.U5D16.services.ClientService;
-import application.U5D16.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -42,6 +40,12 @@ public class ClientController {
     @PreAuthorize("hasAuthority('ADMIN')")
     public Client getProfile(@PathVariable UUID id, @RequestBody NewClientDTO body){
         return clientService.findClientByIdAndUpdate(id , body);
+    }
+
+    @PatchMapping("/upload/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String uploadPicture(@PathVariable UUID id, @RequestParam("avatar")MultipartFile file) throws IOException {
+        return clientService.imageUpload(id, file);
     }
 
 
