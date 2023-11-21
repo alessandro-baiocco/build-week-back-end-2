@@ -4,7 +4,6 @@ package application.U5D16.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-public class FullAddress {
+public class Region {
     @Id
     @GeneratedValue
     private UUID id;
@@ -26,16 +25,10 @@ public class FullAddress {
 
     @Override
     public String toString() {
-        return "FullAddress{" +
-                "id=" + id +
-                ", denominazioneInItaliano='" + denominazioneInItaliano + '\'' +
-                ", provincia='" + provincia + '\'' +
-                ", Sigla='" + sigla + '\'' +
-                ", regione='" + regione + '\'' +
-                '}';
+        return denominazioneInItaliano + " " + provincia + " " + sigla + " " + regione + "\n";
     }
 
-    public FullAddress(String denominazioneInItaliano, String provincia, String sigla, String regione) {
+    public Region(String denominazioneInItaliano, String provincia, String sigla, String regione) {
         this.denominazioneInItaliano = denominazioneInItaliano;
         this.provincia = provincia;
         this.sigla = sigla;
