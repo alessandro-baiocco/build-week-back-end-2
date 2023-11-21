@@ -51,30 +51,48 @@ public class RegionsService {
                 Region fullAddress = new Region();
                 fullAddress.setProvincia(data[3]);
                 fullAddress.setDenominazioneInItaliano(data[2]);
-                switch (data[3].replace("-" , " ")){
-                    case "Sud Sardegna":
+                String rimpiazzaGliSpazzi = data[3].replace(" " , "-");
+                String provinciaGiusta = rimpiazzaGliSpazzi.split("/")[0];
+                switch (provinciaGiusta.toLowerCase()){
+                    case "sud-sardegna":
                         fullAddress.setRegione("Sardegna");
                         fullAddress.setSigla("SU");
                         break;
-                    case "Valle d'Aosta/Vallée d'Aoste":
-                            fullAddress.setRegione("Valle d'Aosta");
-                            fullAddress.setSigla("VdA");
-                            break;
-                    case "Verbano Cusio Ossola":
+                    case "pesaro-e-urbino":
+                        fullAddress.setRegione("Marche");
+                        fullAddress.setSigla("PU");
+                        break;
+                    case "verbano-cusio-ossola":
                         fullAddress.setRegione("Piemonte");
                         fullAddress.setSigla("VCO");
+                        break;
+                    case "monza-e-della-brianza":
+                        fullAddress.setRegione("Lombardia");
+                        fullAddress.setSigla("MB");
+                        break;
+                    case "reggio-nell'emilia":
+                        fullAddress.setRegione("Emilia Romagna");
+                        fullAddress.setSigla("RE");
+                        break;
+                    case "forlì-cesena":
+                        fullAddress.setRegione("Emilia Romagna");
+                        fullAddress.setSigla("FC");
+                        break;
+                    case "valle-d'aosta":
+                        fullAddress.setRegione("AOSTA");
+                        fullAddress.setSigla("AO");
                         break;
                     default:
                         for(int j = 0 ; j < regioniCitta.size() ; j++){
                             String[] data2 = regioniCitta.get(j).split(";");
-                            if(data[3].trim().equalsIgnoreCase(data2[1].trim())){
+                            if(provinciaGiusta.trim().equalsIgnoreCase(data2[1].trim())){
                                 fullAddress.setRegione(data2[2]);
                                 fullAddress.setSigla(data2[0]);
                             }
                         }
                 }
 
-
+//                System.out.println(fullAddress);
 
                     regionsRepo.save(fullAddress);
                 }
