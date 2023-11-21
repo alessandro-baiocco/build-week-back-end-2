@@ -36,9 +36,6 @@ public class SecurityConfig {
     JWTAuthFilter jwtAuthFilter;
 
     @Autowired
-
-    ExceptionFilter exceptionFilter;
-
     ExceptionFilter exceptionsFilter;
 
 
@@ -56,9 +53,9 @@ public class SecurityConfig {
         // Aggiugo filtri custom
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.addFilterBefore(exceptionFilter, JWTAuthFilter.class);
-
         http.addFilterBefore(exceptionsFilter, JWTAuthFilter.class);
+
+
 
 
         // Aggiungo/rimuovo protezione sui singoli endpoint in maniera che venga/non venga richiesta l'autenticazione per accedervi
