@@ -37,9 +37,9 @@ public class EmailSender {
         sg.api(request);
     }
 
-    public void sendemail(String recipient, String subjects, String contents) throws IOException{
+    public void sendemail(String recipient, String object, String contents) throws IOException{
         Email from = new Email(sender);
-        String subject = subjects;
+        String subject = object;
         Email to = new Email(recipient);
         Content content = new Content("text/plain", contents);
         Mail mail = new Mail(from, subject, to, content);
