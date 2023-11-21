@@ -33,7 +33,6 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public User saveUser(@RequestBody @Validated NewUserDTO body , BindingResult validation){
         if(validation.hasErrors()){

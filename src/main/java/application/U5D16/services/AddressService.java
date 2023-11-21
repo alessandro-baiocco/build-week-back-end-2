@@ -22,9 +22,6 @@ public class AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-    @Autowired
-    private Cloudinary cloudinary;
-
     public Page<Address> getALlAddresses(int page, int size, String orderBy)
     {
         Pageable addressPageable = PageRequest.of(page, size, Sort.by(orderBy));
@@ -46,7 +43,6 @@ public class AddressService {
         Address newLocationAddress = new Address();
 
         newLocationAddress.setVia(newAddress.via());
-
         newLocationAddress.setCap(newAddress.cap());
         newLocationAddress.setComune(newAddress.comune());
         return addressRepository.save(newLocationAddress);
@@ -71,4 +67,11 @@ public class AddressService {
         Address foundAddress = this.findById(uuid);
         addressRepository.delete(foundAddress);
     }
+
+
+
+
+
+
+
 }

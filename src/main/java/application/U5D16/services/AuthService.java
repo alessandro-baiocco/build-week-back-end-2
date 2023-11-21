@@ -57,9 +57,11 @@ public class AuthService {
 
         newUser.setNome(body.nome());
         newUser.setCognome(body.cognome());
-        newUser.setUsername(body.username());
+        newUser.setUsername(body.nome() + "_" + body.cognome());
         newUser.setPassword(bcrypt.encode(body.password()));
         newUser.setEmail(body.email());
+        newUser.setAvatar("http://ui-avatars.com/api/?name=" + body.cognome().trim().replace(" " , "") + "+" + body.nome().trim().replace(" " , ""));
+
         newUser.setRole(Role.USER);
 
         User savedUser = usersRepository.save(newUser);

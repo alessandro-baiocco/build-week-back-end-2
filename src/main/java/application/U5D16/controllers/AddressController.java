@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/Address")
+@RequestMapping("/address")
 public class AddressController {
 
     @Autowired
