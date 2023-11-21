@@ -57,7 +57,6 @@ public class ClientService {
         newAddress.setVia(body.indirizzo().via());
         newAddress.setComune(body.indirizzo().comune());
         newAddress.setCap(body.indirizzo().cap());
-        newAddress.setLocalità(body.indirizzo().località());
 
         newClient.setCognomeContatto(body.cognomeContatto());
         newClient.setFormaGiuridica(body.formaGiuridica());
@@ -85,7 +84,6 @@ public class ClientService {
         newAddress.setVia(body.indirizzo().via());
         newAddress.setComune(body.indirizzo().comune());
         newAddress.setCap(body.indirizzo().cap());
-        newAddress.setLocalità(body.indirizzo().località());
     if (foundClient.getLogo().equals("http://ui-avatars.com/api/?name=" + foundClient.getRagioneSociale().replace(" ", ""))){
         foundClient.setLogo("http://ui-avatars.com/api/?name=" + body.ragioneSociale().replace(" ", ""));
     }

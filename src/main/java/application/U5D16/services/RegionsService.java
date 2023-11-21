@@ -86,6 +86,7 @@ public class RegionsService {
                         for(int j = 0 ; j < regioniCitta.size() ; j++){
                             String[] data2 = regioniCitta.get(j).split(";");
                             if(provinciaGiusta.trim().equalsIgnoreCase(data2[1].trim())){
+                                if(data2[0].equals("Roma")) data2[0] = "RM";
                                 fullAddress.setRegione(data2[2]);
                                 fullAddress.setSigla(data2[0]);
                             }

@@ -21,13 +21,8 @@ public class Address {
     @GeneratedValue
     private UUID id;
     private String via;
-    private String località;
     private int cap;
     private String comune;
-
-    @CreationTimestamp
-    private Date createdAt;
-
 
     @OneToOne
     @JoinColumn(name = "client_id")

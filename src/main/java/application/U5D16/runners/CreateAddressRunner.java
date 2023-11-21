@@ -19,7 +19,6 @@ public class CreateAddressRunner implements CommandLineRunner {
 //            regionsService.readCsvAndStoreInDb("src/main/excels/comuni-italiani.csv");
 //        }catch (IOException ex){
 //            System.err.println(ex.getMessage());
-//
 //        }
 
 

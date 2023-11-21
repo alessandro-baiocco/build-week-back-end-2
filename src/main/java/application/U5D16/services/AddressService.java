@@ -46,7 +46,7 @@ public class AddressService {
         Address newLocationAddress = new Address();
 
         newLocationAddress.setVia(newAddress.via());
-        newLocationAddress.setLocalità(newAddress.località());
+
         newLocationAddress.setCap(newAddress.cap());
         newLocationAddress.setComune(newAddress.comune());
         return addressRepository.save(newLocationAddress);
@@ -59,12 +59,7 @@ public class AddressService {
         if (body.via() != null){
             foundAddress.setVia(body.via());
         }
-        if (body.località() != null){
-            foundAddress.setLocalità(body.località());
-        }
-        if (body.località() != null){
-            foundAddress.setLocalità(body.località());
-        }
+
         if (body.comune() != null){
             foundAddress.setComune(body.comune());
         }
