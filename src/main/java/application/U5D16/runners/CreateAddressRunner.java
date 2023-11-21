@@ -15,12 +15,12 @@ public class CreateAddressRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        try {
-            regionsService.readCsvAndStoreInDb("src/main/excels/comuni-italiani.csv");
-        }catch (IOException ex){
-            System.err.println(ex.getMessage());
-
-        }
+//        try {
+//            regionsService.readCsvAndStoreInDb("src/main/excels/comuni-italiani.csv");
+//        }catch (IOException ex){
+//            System.err.println(ex.getMessage());
+//
+//        }
 
 
     }
