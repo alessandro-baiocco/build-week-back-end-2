@@ -21,7 +21,7 @@ public class Client {
     @GeneratedValue
     private UUID id;
     private String ragioneSociale;
-    private String partitaIva;
+    private Long partitaIva;
     private String email;
     private LocalDate dataInserimento;
     private LocalDate dataUltimoContatto;
