@@ -58,7 +58,7 @@ public class AddressController {
     @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    public Address saveAddress(@RequestBody @Validated AddressDTO body , BindingResult validation){
+    public Address saveAddress(@RequestBody @Validated Address body , BindingResult validation){
         if(validation.hasErrors()){
             throw new BadRequestException(validation.getAllErrors());
         } else {

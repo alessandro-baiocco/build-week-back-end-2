@@ -33,18 +33,30 @@ public class AddressService {
         return addressRepository.findById(uuid).orElseThrow(() -> new NotFoundException(uuid));
     }
 
-    public Address saveAddress(AddressDTO newAddress){
+    public Address saveAddress(Address newAddress){
 
-        addressRepository.findByVia(newAddress.via()).ifPresent(position -> {throw new
+        addressRepository.findByVia(newAddress.getVia()).ifPresent(position -> {throw new
                 BadRequestException("The address added already exists");
 
         });
 
         Address newLocationAddress = new Address();
 
-        newLocationAddress.setVia(newAddress.via());
-        newLocationAddress.setCap(newAddress.cap());
-        newLocationAddress.setComune(newAddress.comune());
+        newLocationAddress.setVia(newAddress.getVia());
+        newLocationAddress.setCap(newAddress.getCap());
+        newLocationAddress.setComune(newAddress.getComune());
+        return addressRepository.save(newLocationAddress);
+    }
+
+
+
+    public Address saveAddressByClient(Address newAddress){
+
+        Address newLocationAddress = new Address();
+
+        newLocationAddress.setVia(newAddress.getVia());
+        newLocationAddress.setCap(newAddress.getCap());
+        newLocationAddress.setComune(newAddress.getComune());
         return addressRepository.save(newLocationAddress);
     }
 

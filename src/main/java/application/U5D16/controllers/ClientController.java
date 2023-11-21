@@ -48,7 +48,7 @@ public class ClientController {
         return clientService.imageUpload(id, file);
     }
 
-    @PatchMapping("")
+    @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
     public Client saveClient(@RequestBody NewClientDTO body ) throws IOException {
         return clientService.saveClient(body);

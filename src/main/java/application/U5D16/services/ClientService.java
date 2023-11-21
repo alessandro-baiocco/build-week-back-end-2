@@ -3,13 +3,17 @@ package application.U5D16.services;
 
 import application.U5D16.entities.Address;
 import application.U5D16.entities.Client;
+import application.U5D16.entities.Fattura;
 import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.exceptions.NotFoundException;
 import application.U5D16.payloads.client.NewClientDTO;
+import application.U5D16.repositories.AddressRepository;
 import application.U5D16.repositories.ClientRepository;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +22,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,6 +36,8 @@ public class ClientService {
     AddressService addressService;
     @Autowired
     private Cloudinary cloudinary;
+
+
 
     public Page<Client> getALlClients(int page, int size, String orderBy)
     {
@@ -50,29 +58,38 @@ public class ClientService {
         });
 
         Client newClient = new Client();
+        List<Fattura> fatture = new ArrayList<>();
 
 
         Address newAddress = new Address();
-        newAddress.setClient(newClient);
         newAddress.setVia(body.indirizzo().via());
         newAddress.setComune(body.indirizzo().comune());
         newAddress.setCap(body.indirizzo().cap());
 
+
+        Address savedAddress = addressService.saveAddress(newAddress);
+
+        Address clientAddress = addressService.findById(savedAddress.getId());
+
         newClient.setCognomeContatto(body.cognomeContatto());
+        newClient.setNomeContatto(body.nomeContatto());
         newClient.setFormaGiuridica(body.formaGiuridica());
-        newClient.setIndirizzo(newAddress);
+        newClient.setIndirizzo(clientAddress);
         newClient.setFatturatoAnnuale(body.fatturatoAnnuale());
         newClient.setEmailContatto(body.emailContatto());
         newClient.setTelefono(body.telefono());
+        newClient.setDataUltimoContatto(LocalDate.now());
+        newClient.setDataInserimento(LocalDate.now());
         newClient.setTelefonoContatto(body.telefonoContatto());
-        newClient.setFatture(new ArrayList<>());
+        newClient.setFatture(fatture);
         newClient.setRagioneSociale(body.ragioneSociale());
         newClient.setPec(body.pec());
         newClient.setPartitaIva(body.partitaIva());
         newClient.setEmail(body.email());
         newClient.setLogo("http://ui-avatars.com/api/?name=" + newClient.getRagioneSociale().replace(" ", ""));
 
-        return clientRepo.save(newClient);
+        clientRepo.save(newClient);
+        return newClient;
     }
 
     public Client findClientByIdAndUpdate(UUID uuid, NewClientDTO body){
@@ -80,10 +97,10 @@ public class ClientService {
         Client foundClient = this.findById(uuid);
 
         Address newAddress = new Address();
-        newAddress.setClient(foundClient);
         newAddress.setVia(body.indirizzo().via());
         newAddress.setComune(body.indirizzo().comune());
         newAddress.setCap(body.indirizzo().cap());
+        addressService.saveAddressByClient(newAddress);
     if (foundClient.getLogo().equals("http://ui-avatars.com/api/?name=" + foundClient.getRagioneSociale().replace(" ", ""))){
         foundClient.setLogo("http://ui-avatars.com/api/?name=" + body.ragioneSociale().replace(" ", ""));
     }

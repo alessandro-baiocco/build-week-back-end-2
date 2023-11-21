@@ -40,7 +40,8 @@ public class Client {
     @JsonIgnore
     private List<Fattura> fatture = new ArrayList<>();
 
-    @OneToOne(mappedBy = "client")
+    @OneToOne
+    @JoinColumn(name = "address_id")
     private Address indirizzo;
 
 

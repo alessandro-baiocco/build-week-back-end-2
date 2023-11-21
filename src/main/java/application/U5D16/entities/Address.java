@@ -1,5 +1,7 @@
 package application.U5D16.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -23,9 +25,5 @@ public class Address {
     private String via;
     private int cap;
     private String comune;
-
-    @OneToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
 
 }
