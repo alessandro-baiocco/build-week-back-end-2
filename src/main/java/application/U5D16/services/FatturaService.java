@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -67,6 +68,35 @@ public class FatturaService {
         Client found = clientService.findById(clientId);
         return found.getFatture();
     }
+
+
+    public List<Fattura> findByDataGreaterThanEqual(LocalDate to){
+        return fatturaRepository.findByDataGreaterThanEqual(to);
+    }
+
+    public List<Fattura> findByDataLessThanEqual(LocalDate from){
+        return fatturaRepository.findByDataLessThanEqual(from);
+    }
+
+
+    public List<Fattura> findByDataBetween(LocalDate to , LocalDate from){
+        return fatturaRepository.findByDataBetween(to, from);
+    }
+
+    public List<Fattura> findByImportoGreaterThan(double minImporto){
+        return fatturaRepository.findByImportoGreaterThanEqual(minImporto);
+    }
+
+    public List<Fattura> findByImportoLessThanEqual(double maxImporto){
+        return fatturaRepository.findByImportoLessThanEqual(maxImporto);
+    }
+
+
+    public List<Fattura> findByImportoBetween(double minImporto , double maxImporto){
+        return fatturaRepository.findByImportoBetween(minImporto , maxImporto);
+    }
+
+
 
 
 }
