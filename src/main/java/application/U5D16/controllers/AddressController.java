@@ -35,15 +35,6 @@ public class AddressController {
         return addressService.findById(id);
     }
 
-    @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Address saveNewAddress(@RequestBody @Validated AddressDTO newAddress, BindingResult validation){
-
-        if (validation.hasErrors()){
-            throw new BadRequestException(validation.getAllErrors());
-        }
-        return addressService.saveAddress(newAddress);
-    }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
