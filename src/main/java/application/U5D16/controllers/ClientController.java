@@ -115,6 +115,12 @@ public class ClientController {
         return clientService.findByRangeDataUltimoContatto(to , from);
     }
 
+    @GetMapping("/nomeContatto")
+    public List<Client> findByNameStartingWith(@RequestParam String name){
+       return clientService.findByNomeContattoStartingWith(name);
+
+    }
+
 
 
 

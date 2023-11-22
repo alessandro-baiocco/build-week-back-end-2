@@ -197,9 +197,15 @@ public class ClientService {
 
     public List<Client> findByRangeDataUltimoContatto(LocalDate to , LocalDate from){
         return  clientRepo.findByDataUltimoContattoBetween(to , from);
+    }
 
+
+    public List<Client> findByNomeContattoStartingWith(String name){
+        return clientRepo.findByNomeContattoStartingWithIgnoreCase(name);
 
     }
+
+
 
 
 

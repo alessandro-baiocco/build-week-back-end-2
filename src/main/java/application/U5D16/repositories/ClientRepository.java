@@ -48,6 +48,9 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
     List<Client> findByDataUltimoContattoBetween(LocalDate to , LocalDate from);
 
 
+    List<Client> findByNomeContattoStartingWithIgnoreCase(String name);
+
+
 
 
 }
