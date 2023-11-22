@@ -23,7 +23,7 @@ public class ExceptionsHandler {
         if(e.getErrorList() != null){
             List<String> errorsList = e.getErrorList().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage).toList();
-            return new ErrorListDTO(e.getMessage(), new Date(), new ArrayList<>());
+            return new ErrorListDTO(e.getMessage(), new Date(), errorsList);
         }else {
             return new ErrorListDTO(e.getMessage(), new Date(), new ArrayList<>());
         }
