@@ -10,11 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -96,23 +94,6 @@ public class FatturaService {
 
     public List<Fattura> findByImportoBetween(double minImporto , double maxImporto){
         return fatturaRepository.findByImportoBetween(minImporto , maxImporto);
-    }
-
-
-    public List<Fattura> findByDataGreaterThanEqual(Calendar minYear){
-        return fatturaRepository.findByDataGreaterThanEqual(minYear);
-    }
-
-    public List<Fattura> findByDataLessThanEqual(Calendar maxYear){
-        return fatturaRepository.findByDataLessThanEqual(maxYear);
-    }
-
-
-    public List<Fattura> findByDataBetween(Calendar minYear , Calendar maxYear){
-
-
-
-        return fatturaRepository.findByDataBetween(minYear, maxYear);
     }
 
 

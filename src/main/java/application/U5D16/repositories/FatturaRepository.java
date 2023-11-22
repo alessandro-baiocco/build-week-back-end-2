@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,12 +28,6 @@ public interface FatturaRepository extends JpaRepository<Fattura, UUID> {
 
 
     List<Fattura> findByImportoBetween(double minImporto , double maxImporto);
-
-    List<Fattura> findByDataGreaterThanEqual(Calendar minYear);
-
-    List<Fattura> findByDataLessThanEqual(Calendar maxYear);
-
-    List<Fattura> findByDataBetween(Calendar minYear , Calendar maxYear);
 
 
 
