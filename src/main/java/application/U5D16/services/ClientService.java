@@ -153,4 +153,17 @@ public class ClientService {
         clientRepo.save(found);
         return found.getLogo();
     }
+    public List<Client> getClientiByFatturatoMinimo(double minFatturato) {
+
+
+        return  clientRepo.findByFatturatoAnnualeGreaterThanEqual(minFatturato);
+    }
+
+    public List<Client> getClientiByFatturatoMax(double maxFatturato) {
+        return  clientRepo.findByFatturatoAnnualeLessThanEqual(maxFatturato);
+    }
+
+
+
+
 }

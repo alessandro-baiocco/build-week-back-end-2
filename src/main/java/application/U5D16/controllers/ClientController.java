@@ -6,12 +6,15 @@ import application.U5D16.payloads.client.NewClientDTO;
 import application.U5D16.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -64,6 +67,16 @@ public class ClientController {
         clientService.findClientByUUIDAndDelete(id);
     }
 
+
+    @GetMapping("/minfatturato")
+    public List<Client> getClientiByFatturatoMinimo(@RequestParam double minFatturato) {
+        return clientService.getClientiByFatturatoMinimo(minFatturato);
+    }
+
+    @GetMapping("/maxfatturato")
+    public List<Client> getClientiByFatturatoMassimo(@RequestParam double maxFatturato) {
+        return clientService.getClientiByFatturatoMax(maxFatturato);
+    }
 
 
 
