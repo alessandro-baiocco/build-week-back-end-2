@@ -37,6 +37,7 @@ public class AddressController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     public Address findByIdAndUpdate(@PathVariable UUID id, @RequestBody @Validated UpdateAddressDTO body, BindingResult validation){
         if (validation.hasErrors()) {
@@ -46,6 +47,7 @@ public class AddressController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void findByIdAndDelete(@PathVariable UUID id){
         addressService.findAddressByUUIDAndDelete(id);

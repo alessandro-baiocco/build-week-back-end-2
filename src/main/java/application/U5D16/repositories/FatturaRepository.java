@@ -12,11 +12,23 @@ import java.util.UUID;
 @Repository
 public interface FatturaRepository extends JpaRepository<Fattura, UUID> {
 
-    List<Client> findByDataGreaterThanEqual(LocalDate to);
+    List<Fattura> findByDataGreaterThanEqual(LocalDate to);
 
 
-    List<Client> findByDataLessThanEqual(LocalDate from);
+    List<Fattura> findByDataLessThanEqual(LocalDate from);
 
 
-    List<Client> findByDataBetween(LocalDate to , LocalDate from);
+    List<Fattura> findByDataBetween(LocalDate to , LocalDate from);
+
+
+    List<Fattura> findByImportoGreaterThanEqual(double minImporto);
+
+
+    List<Fattura> findByImportoLessThanEqual(double maxImporto);
+
+
+    List<Fattura> findByImportoBetween(double minImporto , double maxImporto);
+
+
+
 }
