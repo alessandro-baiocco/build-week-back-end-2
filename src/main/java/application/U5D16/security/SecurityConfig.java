@@ -38,6 +38,7 @@ public class SecurityConfig {
     @Autowired
     ExceptionFilter exceptionsFilter;
 
+
     @Value("#{'${cors.allowed-origins}'.split(',')}")
     private List<String> allowedOrigins;
 
@@ -51,7 +52,11 @@ public class SecurityConfig {
 
         // Aggiugo filtri custom
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         http.addFilterBefore(exceptionsFilter, JWTAuthFilter.class);
+
+
+
 
         // Aggiungo/rimuovo protezione sui singoli endpoint in maniera che venga/non venga richiesta l'autenticazione per accedervi
         http.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());

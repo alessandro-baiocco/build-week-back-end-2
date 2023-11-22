@@ -22,7 +22,13 @@ public class AddressService {
     @Autowired
     AddressRepository addressRepository;
 
-    public Page<Address> getALlAddresses(int page, int size, String orderBy)
+
+   
+    @Autowired
+    private Cloudinary cloudinary;
+
+    public Page<Address> getAllAddresses(int page, int size, String orderBy)
+ 
     {
         Pageable addressPageable = PageRequest.of(page, size, Sort.by(orderBy));
         return addressRepository.findAll(addressPageable);
