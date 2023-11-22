@@ -187,7 +187,7 @@ public class ClientService {
 
 
     public List<Client> getClientiByDataUltimoContattoMinimo(LocalDate to) {
-        return  clientRepo.findByDataInserimentoGreaterThanEqual(to);
+        return  clientRepo.findByDataUltimoContattoGreaterThanEqual(to);
     }
 
     public List<Client> getClientiByDataUltimoContattoMassima(LocalDate from) {

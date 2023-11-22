@@ -35,15 +35,6 @@ public class AddressController {
         return addressService.findById(id);
     }
 
-    @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Address saveNewAddress(@RequestBody @Validated AddressDTO newAddress, BindingResult validation){
-
-        if (validation.hasErrors()){
-            throw new BadRequestException(validation.getAllErrors());
-        }
-        return addressService.saveAddress(newAddress);
-    }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
@@ -71,19 +62,6 @@ public class AddressController {
                 return addressService.saveAddress(body);
         }
     }
-
-    @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public Address putAddress(@PathVariable UUID id, @Validated @RequestBody UpdateAddressDTO body, BindingResult validation){
-        if(validation.hasErrors()){
-            throw new BadRequestException(validation.getAllErrors());
-        } else {
-                return addressService.findAddressByIdAndUpdate(id, body);
-        }
-    }
-
-
-
 
 
 

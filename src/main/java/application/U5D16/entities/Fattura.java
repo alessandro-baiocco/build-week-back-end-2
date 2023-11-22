@@ -1,5 +1,6 @@
 package application.U5D16.entities;
 
+import application.U5D16.entities.enums.StatoFattura;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,8 @@ public class Fattura {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
+    @Enumerated(EnumType.STRING)
+    private StatoFattura stato;
+
 
 }
