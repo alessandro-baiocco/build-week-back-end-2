@@ -164,6 +164,44 @@ public class ClientService {
     }
 
 
+    public List<Client> findByRangeFatturatoAnnuale(double minFatturato , double maxFatturato){
+        return  clientRepo.findByFatturatoAnnualeBetween(minFatturato , maxFatturato);
+
+
+    }
+
+    public List<Client> getClientiByDataDiInserimentoMinimo(LocalDate to) {
+        return  clientRepo.findByDataInserimentoGreaterThanEqual(to);
+    }
+
+    public List<Client> getClientiByDataDiInserimentoMassima(LocalDate from) {
+        return  clientRepo.findByDataInserimentoLessThanEqual(from);
+    }
+
+
+    public List<Client> findByRangeDataDiInserimento(LocalDate to , LocalDate from){
+        return  clientRepo.findByDataInserimentoBetween(to , from);
+
+
+    }
+
+
+    public List<Client> getClientiByDataUltimoContattoMinimo(LocalDate to) {
+        return  clientRepo.findByDataInserimentoGreaterThanEqual(to);
+    }
+
+    public List<Client> getClientiByDataUltimoContattoMassima(LocalDate from) {
+        return  clientRepo.findByDataUltimoContattoLessThanEqual(from);
+    }
+
+
+    public List<Client> findByRangeDataUltimoContatto(LocalDate to , LocalDate from){
+        return  clientRepo.findByDataUltimoContattoBetween(to , from);
+
+
+    }
+
+
 
 
 }

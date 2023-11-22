@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,6 +23,29 @@ public interface ClientRepository extends JpaRepository<Client, UUID> {
 
 
     List<Client> findByFatturatoAnnualeLessThanEqual(double maxFatturato);
+
+
+    List<Client> findByFatturatoAnnualeBetween(double minFatturato , double maxFatturato);
+
+
+
+    List<Client> findByDataInserimentoGreaterThanEqual(LocalDate to);
+
+
+    List<Client> findByDataInserimentoLessThanEqual(LocalDate from);
+
+
+    List<Client> findByDataInserimentoBetween(LocalDate to , LocalDate from);
+
+
+
+    List<Client> findByDataUltimoContattoGreaterThanEqual(LocalDate to);
+
+
+    List<Client> findByDataUltimoContattoLessThanEqual(LocalDate from);
+
+
+    List<Client> findByDataUltimoContattoBetween(LocalDate to , LocalDate from);
 
 
 

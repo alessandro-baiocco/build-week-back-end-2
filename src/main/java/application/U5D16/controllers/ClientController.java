@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -77,6 +78,43 @@ public class ClientController {
     public List<Client> getClientiByFatturatoMassimo(@RequestParam double maxFatturato) {
         return clientService.getClientiByFatturatoMax(maxFatturato);
     }
+
+    @GetMapping("/fatturato")
+    public List<Client> getClientiByFatturatoRange(@RequestParam  double minFatturato, @RequestParam double maxFatturato) {
+        return clientService.findByRangeFatturatoAnnuale(minFatturato , maxFatturato);
+    }
+
+    @GetMapping("/minInserimento")
+    public List<Client> getClientiByDataDiInserimentoMinimo(@RequestParam LocalDate to) {
+        return clientService.getClientiByDataDiInserimentoMinimo(to);
+    }
+
+    @GetMapping("/maxInserimento")
+    public List<Client> getClientiByDataDiInserimentoMassima(@RequestParam LocalDate from) {
+        return clientService.getClientiByDataDiInserimentoMassima(from);
+    }
+
+    @GetMapping("/dataDiInserimento")
+    public List<Client> findByRangeDataDiInserimento(@RequestParam  LocalDate to, @RequestParam LocalDate from) {
+        return clientService.findByRangeDataDiInserimento(to , from);
+    }
+
+
+    @GetMapping("/minContatto")
+    public List<Client> getClientiByDataUltimoContattoMinimo(@RequestParam LocalDate to) {
+        return clientService.getClientiByDataUltimoContattoMinimo(to);
+    }
+
+    @GetMapping("/maxContatto")
+    public List<Client> getClientiByDataUltimoContattoMassimo(@RequestParam LocalDate from) {
+        return clientService.getClientiByDataUltimoContattoMassima(from);
+    }
+
+    @GetMapping("/ultimoContatto")
+    public List<Client> findByRangeDataUltimoContatto(@RequestParam  LocalDate to, @RequestParam LocalDate from) {
+        return clientService.findByRangeDataUltimoContatto(to , from);
+    }
+
 
 
 
