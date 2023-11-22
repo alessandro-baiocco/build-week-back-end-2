@@ -63,19 +63,6 @@ public class AddressController {
         }
     }
 
-    @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public Address putAddress(@PathVariable UUID id, @Validated @RequestBody UpdateAddressDTO body, BindingResult validation){
-        if(validation.hasErrors()){
-            throw new BadRequestException(validation.getAllErrors());
-        } else {
-                return addressService.findAddressByIdAndUpdate(id, body);
-        }
-    }
-
-
-
-
 
 
 }

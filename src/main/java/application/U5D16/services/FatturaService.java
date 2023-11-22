@@ -1,7 +1,7 @@
 package application.U5D16.services;
 
+import application.U5D16.entities.Client;
 import application.U5D16.entities.Fattura;
-import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.exceptions.NotFoundException;
 import application.U5D16.payloads.user.FatturaDTO;
 import application.U5D16.repositories.FatturaRepository;
@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -61,5 +62,11 @@ public class FatturaService {
         Fattura foundUUID = this.findById(uuid);
         fatturaRepository.delete(foundUUID);
     }
+
+    public List<Fattura> findFatturaFromClientId(UUID clientId){
+        Client found = clientService.findById(clientId);
+        return found.getFatture();
+    }
+
 
 }

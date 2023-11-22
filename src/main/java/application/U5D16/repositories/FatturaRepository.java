@@ -5,9 +5,18 @@ import application.U5D16.entities.Fattura;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface FatturaRepository extends JpaRepository<Fattura, UUID> {
 
+    List<Client> findByDataGreaterThanEqual(LocalDate to);
+
+
+    List<Client> findByDataLessThanEqual(LocalDate from);
+
+
+    List<Client> findByDataBetween(LocalDate to , LocalDate from);
 }

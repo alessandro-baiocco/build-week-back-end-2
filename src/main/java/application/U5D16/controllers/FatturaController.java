@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -57,6 +58,14 @@ public class FatturaController {
     public void findByIdAndDelete(@PathVariable UUID id){
         fatturaService.findAddressByUUIDAndDelete(id);
     }
+
+
+
+    @GetMapping("/client/{id}")
+    public List<Fattura> getFattureByClient(@PathVariable UUID id){
+        return fatturaService.findFatturaFromClientId(id);
+    }
+
 
 
 }

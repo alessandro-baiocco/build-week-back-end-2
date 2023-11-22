@@ -21,9 +21,6 @@ public class AddressService {
 
     @Autowired
     AddressRepository addressRepository;
-
-
-   
     @Autowired
     private Cloudinary cloudinary;
 
