@@ -50,8 +50,6 @@ public class UsersController {
     }
 
 
-
-
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
