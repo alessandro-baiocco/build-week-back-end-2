@@ -3,7 +3,6 @@ package application.U5D16.controllers;
 
 
 import application.U5D16.entities.Region;
-import application.U5D16.payloads.regions.RegionSigla;
 import application.U5D16.repositories.RegionsRepository;
 import application.U5D16.services.RegionsService;
 import org.springframework.beans.factory.annotation.Autowired;

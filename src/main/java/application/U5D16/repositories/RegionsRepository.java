@@ -17,7 +17,7 @@ public interface RegionsRepository extends JpaRepository<Region, UUID> {
     public List<String> getProvincie();
 
 
-    @Query("SELECT DISTINCT r FROM Region r WHERE provincia LIKE :provincia")
+    @Query("SELECT DISTINCT r FROM Region r WHERE LOWER(provincia) LIKE LOWER(:provincia)")
     public List<Region> getRegione(String provincia);
 
 }
