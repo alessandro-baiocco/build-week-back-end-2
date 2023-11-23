@@ -111,6 +111,12 @@ public class RegionsService {
 
 
 
+    public List<String> getProvincie(){
+        return regionsRepo.getProvincie();
+    }
+
+
+
 
 
 

@@ -23,6 +23,14 @@ public class RegionsController {
     }
 
 
+    @GetMapping("/provincie")
+    private List<String> getProvincie(){
+        return regionsService.getProvincie();
+    }
+
+
+
+
 
 
 
