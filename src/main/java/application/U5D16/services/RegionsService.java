@@ -2,6 +2,7 @@ package application.U5D16.services;
 
 
 import application.U5D16.entities.Region;
+import application.U5D16.payloads.regions.RegionSigla;
 import application.U5D16.repositories.RegionsRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -113,6 +114,10 @@ public class RegionsService {
 
     public List<String> getProvincie(){
         return regionsRepo.getProvincie();
+    }
+
+    public List<Region> getRegione(String provincia){
+        return regionsRepo.getRegione(provincia);
     }
 
 

@@ -3,6 +3,7 @@ package application.U5D16.controllers;
 
 
 import application.U5D16.entities.Region;
+import application.U5D16.payloads.regions.RegionSigla;
 import application.U5D16.repositories.RegionsRepository;
 import application.U5D16.services.RegionsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class RegionsController {
     @GetMapping("/provincie")
     private List<String> getProvincie(){
         return regionsService.getProvincie();
+    }
+
+    @GetMapping("/provincia/regione")
+    private List<Region> getRegione(@RequestParam String provincia){
+        return regionsService.getRegione(provincia);
     }
 
 
