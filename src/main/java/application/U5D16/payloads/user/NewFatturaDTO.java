@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record NewFatturaDTO (
-        @NotEmpty(message = "l'importo è un campo obbligatorio!")
+        @NotNull(message = "l'importo è un campo obbligatorio!")
         @PositiveOrZero(message = "l'importo deve essere positivo")
         double importo,
         @NotNull(message = "la data è un campo obbligatorio")

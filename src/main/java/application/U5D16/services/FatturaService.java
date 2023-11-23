@@ -6,6 +6,7 @@ import application.U5D16.entities.enums.StatoFattura;
 import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.exceptions.NotFoundException;
 import application.U5D16.payloads.user.FatturaDTO;
+import application.U5D16.payloads.user.NewFatturaDTO;
 import application.U5D16.repositories.FatturaRepository;
 import org.bouncycastle.crypto.agreement.srp.SRP6Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class FatturaService {
         return fatturaRepository.findById(uuid).orElseThrow(() -> new NotFoundException(uuid));
     }
 
-    public Fattura saveFattura(FatturaDTO newFattura){
+    public Fattura saveFattura(NewFatturaDTO newFattura){
 
         Fattura addNewFattura = new Fattura();
 
@@ -49,6 +50,7 @@ public class FatturaService {
         addNewFattura.setData(newFattura.data());
         addNewFattura.setNumero(newFattura.numero());
         addNewFattura.setClient(clientService.findById(newFattura.client()));
+        addNewFattura.setStato(StatoFattura.INVIATA);
 
         return fatturaRepository.save(addNewFattura);
     }
@@ -56,12 +58,15 @@ public class FatturaService {
     public Fattura findFatturaAndUpdate(UUID uuid, FatturaDTO body){
 
         Fattura foundFattura = this.findById(uuid);
-
-            foundFattura.setImporto(body.importo());
-            foundFattura.setData(body.data());
-            foundFattura.setNumero(body.numero());
-            foundFattura.setClient(clientService.findById(body.client()));
-            return fatturaRepository.save(foundFattura);
+try {
+    foundFattura.setImporto(body.importo());
+    foundFattura.setData(body.data());
+    foundFattura.setClient(clientService.findById(body.client()));
+    foundFattura.setStato(StatoFattura.valueOf(body.stato()));
+    return fatturaRepository.save(foundFattura);
+}catch (IllegalArgumentException ex){
+    throw new BadRequestException("stato fattura non valida. gli stati sono PAGATA , NONPAGATA , SCADUTA , INVIATA");
+}
     }
 
     public void findAddressByUUIDAndDelete(UUID uuid) throws NotFoundException {

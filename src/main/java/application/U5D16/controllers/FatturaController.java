@@ -3,6 +3,7 @@ package application.U5D16.controllers;
 import application.U5D16.entities.Fattura;
 import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.payloads.user.FatturaDTO;
+import application.U5D16.payloads.user.NewFatturaDTO;
 import application.U5D16.services.FatturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class FatturaController {
     @PostMapping("")
     @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    public Fattura saveNewFattura(@RequestBody @Validated FatturaDTO newFattura, BindingResult validation){
+    public Fattura saveNewFattura(@RequestBody @Validated NewFatturaDTO newFattura, BindingResult validation){
 
         if (validation.hasErrors()){
             throw new BadRequestException(validation.getAllErrors());
