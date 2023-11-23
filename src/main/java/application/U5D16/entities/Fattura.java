@@ -19,11 +19,9 @@ public class Fattura {
     private double importo;
     private LocalDate data;
     private Long numero;
+    @Enumerated(EnumType.STRING)
+    private StatoFattura stato;
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    @Enumerated(EnumType.STRING)
-    private StatoFattura stato;
-
-
 }

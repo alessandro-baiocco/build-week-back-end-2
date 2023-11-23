@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,8 +27,9 @@ public class UsersController {
     @GetMapping("")
     public Page<User> getAllUser(@RequestParam(defaultValue = "0")int page ,
                                  @RequestParam(defaultValue = "10")int size,
-                                 @RequestParam(defaultValue = "id")String order){
-        return usersService.getUsers(page , size , order);
+                                 @RequestParam(defaultValue = "id")String order,
+                                 @RequestParam(defaultValue = "true")boolean ascending){
+        return usersService.getUsers(page , size , order , ascending);
     }
 
     @GetMapping("/{id}")
@@ -48,6 +50,16 @@ public class UsersController {
     public UserDetails getProfile(@PathVariable UUID id, @RequestBody User body){
         return usersService.findByIdAndUpdate(id , body);
     }
+
+
+
+    @PatchMapping("/upload/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String uploadPicture(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) throws IOException {
+        return usersService.imageUpload(id, file);
+    }
+
+
 
 
     @DeleteMapping("/{id}")

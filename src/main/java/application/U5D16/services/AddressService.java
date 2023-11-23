@@ -24,10 +24,13 @@ public class AddressService {
     @Autowired
     private Cloudinary cloudinary;
 
-    public Page<Address> getAllAddresses(int page, int size, String orderBy)
+    public Page<Address> getAllAddresses(int page, int size, String orderBy , boolean ascending)
  
     {
         Pageable addressPageable = PageRequest.of(page, size, Sort.by(orderBy));
+
+        if (!ascending) addressPageable = PageRequest.of(page, size, Sort.by(orderBy).descending());
+
         return addressRepository.findAll(addressPageable);
     }
 
