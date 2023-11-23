@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -49,6 +50,12 @@ public class UsersController {
         return usersService.findByIdAndUpdate(id , body);
     }
 
+
+    @PatchMapping("/upload/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String uploadPicture(@PathVariable UUID id, @RequestParam("avatar") MultipartFile file) throws IOException {
+        return usersService.imageUpload(id, file);
+    }
 
 
 
