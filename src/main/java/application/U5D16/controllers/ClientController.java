@@ -29,8 +29,9 @@ public class ClientController {
     @GetMapping("")
     public Page<Client> getAllClients(@RequestParam(defaultValue = "0")int page ,
                                       @RequestParam(defaultValue = "10")int size,
-                                      @RequestParam(defaultValue = "id")String order){
-        return clientService.getALlClients(page , size , order);
+                                      @RequestParam(defaultValue = "id")String order,
+                                      @RequestParam(defaultValue = "true")boolean ascending ){
+        return clientService.getALlClients(page , size , order , ascending );
     }
 
     @GetMapping("/{id}")

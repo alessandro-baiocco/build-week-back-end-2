@@ -32,9 +32,12 @@ public class FatturaService {
     @Autowired
     ClientService clientService;
 
-    public Page<Fattura> getFatture(int page, int size, String orderBy){
-
+    public Page<Fattura> getFatture(int page, int size, String orderBy , boolean ascending){
         Pageable fatturePageable = PageRequest.of(page, size, Sort.by(orderBy));
+
+        if (!ascending) fatturePageable = PageRequest.of(page, size, Sort.by(orderBy).descending());
+
+
         return fatturaRepository.findAll(fatturePageable);
     }
 

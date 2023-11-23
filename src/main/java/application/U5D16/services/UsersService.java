@@ -30,8 +30,11 @@ public class UsersService {
     private Cloudinary cloudinary;
 
 
-    public Page<User> getUsers(int page, int size, String orderBy ) {
+    public Page<User> getUsers(int page, int size, String orderBy , boolean ascending ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
+
+
+        if (!ascending) pageable  = PageRequest.of(page, size, Sort.by(orderBy).descending());
 
 
         return usersRepository.findAll(pageable);

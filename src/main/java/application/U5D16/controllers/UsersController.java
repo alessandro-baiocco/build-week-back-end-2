@@ -27,8 +27,9 @@ public class UsersController {
     @GetMapping("")
     public Page<User> getAllUser(@RequestParam(defaultValue = "0")int page ,
                                  @RequestParam(defaultValue = "10")int size,
-                                 @RequestParam(defaultValue = "id")String order){
-        return usersService.getUsers(page , size , order);
+                                 @RequestParam(defaultValue = "id")String order,
+                                 @RequestParam(defaultValue = "true")boolean ascending){
+        return usersService.getUsers(page , size , order , ascending);
     }
 
     @GetMapping("/{id}")

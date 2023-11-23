@@ -28,8 +28,10 @@ public class FatturaController {
     @GetMapping("")
     public Page<Fattura> getAllFatture(@RequestParam(defaultValue = "0") int page,
                                       @RequestParam(defaultValue = "15") int size,
-                                      @RequestParam(defaultValue = "id") String orderBy){
-        return fatturaService.getFatture(page, size, orderBy);
+                                      @RequestParam(defaultValue = "id") String orderBy,
+                                       @RequestParam(defaultValue = "true") boolean ascending
+    ){
+        return fatturaService.getFatture(page, size, orderBy , ascending);
     }
 
     @GetMapping("/{id}")

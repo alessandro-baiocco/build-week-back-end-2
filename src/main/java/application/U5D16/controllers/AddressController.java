@@ -26,8 +26,9 @@ public class AddressController {
     @GetMapping("")
     public Page<Address> getAddresses(@RequestParam(defaultValue = "0") int page,
                                       @RequestParam(defaultValue = "15") int size,
-                                      @RequestParam(defaultValue = "id") String orderBy){
-        return addressService.getAllAddresses(page, size, orderBy);
+                                      @RequestParam(defaultValue = "id") String orderBy ,
+                                      @RequestParam(defaultValue = "true") boolean ascending ){
+        return addressService.getAllAddresses(page, size, orderBy , ascending);
     }
 
     @GetMapping("/{id}")

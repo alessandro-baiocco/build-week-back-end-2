@@ -39,9 +39,12 @@ public class ClientService {
 
 
 
-    public Page<Client> getALlClients(int page, int size, String orderBy)
+    public Page<Client> getALlClients(int page, int size, String orderBy , boolean ascending)
     {
         Pageable clientPageable = PageRequest.of(page, size, Sort.by(orderBy));
+
+        if (!ascending) clientPageable = PageRequest.of(page, size, Sort.by(orderBy).descending());
+
         return clientRepo.findAll(clientPageable);
     }
 
