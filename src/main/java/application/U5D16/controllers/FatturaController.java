@@ -82,6 +82,9 @@ public class FatturaController {
     }
     @GetMapping("/data")
     public List<Fattura> getFattureByRangeData(@RequestParam LocalDate minData , @RequestParam LocalDate maxData){
+        if(minData.isAfter(maxData)){
+            throw new BadRequestException("la data minima deve essere dopo a quella massima");
+        }
         return fatturaService.findByDataBetween(minData , maxData);
     }
 
@@ -96,6 +99,10 @@ public class FatturaController {
     }
     @GetMapping("/importo")
     public List<Fattura> getFattureByRangeImporto(@RequestParam double minImporto , @RequestParam double maxImporto){
+        if(minImporto > maxImporto){
+            throw new BadRequestException("l'importo minimo deve essere maggiore di quello massimo");
+        }
+
         return fatturaService.findByImportoBetween(minImporto , maxImporto);
     }
 
@@ -116,6 +123,9 @@ public class FatturaController {
     }
     @GetMapping("/anno")
     public List<Fattura> getFattureByRangeData(@RequestParam int minAnno , @RequestParam int maxAnno){
+        if(minAnno > maxAnno){
+        throw new BadRequestException("l'anno minimo deve essere prima di quello massimo");
+        }
         return fatturaService.findByDataBetween(minAnno , maxAnno);
     }
 
