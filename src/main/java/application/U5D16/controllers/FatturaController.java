@@ -99,12 +99,24 @@ public class FatturaController {
     }
 
 
+    @GetMapping("/stato")
+    public List<Fattura> getFatturaByStato(@RequestParam String stato){
+        return fatturaService.findByStatoLike(stato);
+    }
 
 
-
-
-
-
+    @GetMapping("/minAnno")
+    public List<Fattura> getFattureByMinData(@RequestParam int minAnno){
+        return fatturaService.findByDataGreaterThanEqual(minAnno);
+    }
+    @GetMapping("/maxAnno")
+    public List<Fattura> getFattureByMaxData(@RequestParam int maxAnno){
+        return fatturaService.findByDataLessThanEqual(maxAnno);
+    }
+    @GetMapping("/anno")
+    public List<Fattura> getFattureByRangeData(@RequestParam int minAnno , @RequestParam int maxAnno){
+        return fatturaService.findByDataBetween(minAnno , maxAnno);
+    }
 
 
 
