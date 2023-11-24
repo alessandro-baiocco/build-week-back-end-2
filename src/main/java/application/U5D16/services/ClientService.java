@@ -7,6 +7,7 @@ import application.U5D16.entities.Fattura;
 import application.U5D16.exceptions.BadRequestException;
 import application.U5D16.exceptions.NotFoundException;
 import application.U5D16.payloads.client.NewClientDTO;
+import application.U5D16.payloads.client.PutClientDTO;
 import application.U5D16.repositories.AddressRepository;
 import application.U5D16.repositories.ClientRepository;
 import com.cloudinary.Cloudinary;
@@ -95,50 +96,45 @@ public class ClientService {
         return newClient;
     }
 
-    public Client findClientByIdAndUpdate(UUID uuid, NewClientDTO body){
+    public Client findClientByIdAndUpdate(UUID uuid, PutClientDTO body){
 
         Client foundClient = this.findById(uuid);
 
-        Address newAddress = new Address();
-        newAddress.setVia(body.indirizzo().via());
-        newAddress.setComune(body.indirizzo().comune());
-        newAddress.setCap(body.indirizzo().cap());
-        addressService.saveAddressByClient(newAddress);
+
+
     if (foundClient.getLogo().equals("http://ui-avatars.com/api/?name=" + foundClient.getRagioneSociale().replace(" ", ""))){
         foundClient.setLogo("http://ui-avatars.com/api/?name=" + body.ragioneSociale().replace(" ", ""));
     }
-        if (body.indirizzo() != null){
-            foundClient.setIndirizzo(newAddress);
-        }
 
-        if (body.cognomeContatto() != null){
+
+
             foundClient.setCognomeContatto(body.cognomeContatto());
-        }
-        if (body.formaGiuridica() != null){
-            foundClient.setFormaGiuridica(body.formaGiuridica());
-        }
-        if (body.fatturatoAnnuale() != null){
-            foundClient.setFatturatoAnnuale(body.fatturatoAnnuale());
-        }
-        if (body.emailContatto() != null){
-            foundClient.setEmailContatto(body.emailContatto());
-        }
 
-        if (body.telefono() != null){
+
+            foundClient.setFormaGiuridica(body.formaGiuridica());
+
+
+            foundClient.setFatturatoAnnuale(body.fatturatoAnnuale());
+
+
+            foundClient.setEmailContatto(body.emailContatto());
+
+
             foundClient.setTelefono(body.telefono());
-        }
-        if (body.ragioneSociale() != null){
+
+
             foundClient.setRagioneSociale(body.ragioneSociale());
-        }
-        if (body.pec() != null){
+
+
             foundClient.setPec(body.pec());
-        }
-        if (body.partitaIva() != null){
+
+
             foundClient.setPartitaIva(body.partitaIva());
-        }
-        if (body.email() != null){
+
+
             foundClient.setEmail(body.email());
-        }
+
+
 
 
         return clientRepo.save(foundClient);
