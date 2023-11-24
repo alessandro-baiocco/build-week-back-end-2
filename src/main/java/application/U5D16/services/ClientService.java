@@ -110,6 +110,8 @@ public class ClientService {
 
             foundClient.setCognomeContatto(body.cognomeContatto());
 
+            foundClient.setNomeContatto(body.nomeContatto());
+
 
             foundClient.setFormaGiuridica(body.formaGiuridica());
 
