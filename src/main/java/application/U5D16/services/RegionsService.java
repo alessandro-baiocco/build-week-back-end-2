@@ -6,10 +6,6 @@ import application.U5D16.repositories.RegionsRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -107,6 +103,16 @@ public class RegionsService {
 
     public List<Region> getAllRegions(){
         return regionsRepo.findAll();
+    }
+
+
+
+    public List<String> getProvincie(){
+        return regionsRepo.getProvincie();
+    }
+
+    public List<Region> getRegione(String provincia){
+        return regionsRepo.getRegione(provincia);
     }
 
 

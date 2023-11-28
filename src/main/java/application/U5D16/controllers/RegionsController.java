@@ -23,6 +23,19 @@ public class RegionsController {
     }
 
 
+    @GetMapping("/provincie")
+    private List<String> getProvincie(){
+        return regionsService.getProvincie();
+    }
+
+    @GetMapping("/provincia/regione")
+    private List<Region> getRegione(@RequestParam String provincia){
+        return regionsService.getRegione(provincia);
+    }
+
+
+
+
 
 
 

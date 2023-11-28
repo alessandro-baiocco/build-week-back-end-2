@@ -3,6 +3,7 @@ package application.U5D16.controllers;
 
 import application.U5D16.entities.Client;
 import application.U5D16.payloads.client.NewClientDTO;
+import application.U5D16.payloads.client.PutClientDTO;
 import application.U5D16.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,7 +44,7 @@ public class ClientController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public Client getProfile(@PathVariable UUID id, @RequestBody NewClientDTO body){
+    public Client putProfile(@PathVariable UUID id, @RequestBody PutClientDTO body){
         return clientService.findClientByIdAndUpdate(id , body);
     }
 
